@@ -1880,3 +1880,18 @@ textarea.form-input::-webkit-resizer { display: none; }
   .timeline-text { max-width: 700px; }
 
 }
+
+.title-wrapper h5 i {
+  font-size: 22px; /* Makes all icons bigger */
+  margin-right: 8px; /* Adds spacing between icon and text */
+  vertical-align: middle; /* Aligns icon nicely with text */
+}
+
+/* Individual icon colors */
+.fa-html5 { color: #E34F26; } /* HTML5 orange */
+.fa-css3-alt { color: #264de4; } /* CSS3 blue */
+.fa-js { color: #F7DF1E; } /* JavaScript yellow */
+.fa-react { color: #61DAFB; } /* React blue */
+.fa-python { color: #3776AB; } /* Python blue */
+.fa-git-alt { color: #F05032; } /* Git orange */
+.fa-github { color: #ffffff; } /* GitHub white */
