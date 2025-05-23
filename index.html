@@ -18,6 +18,8 @@
 </head>
 
 <body>
+  <canvas id="galaxyCanvas"></canvas>
+  <div class="galaxy-overlay"></div>
   <main>
     <aside class="sidebar" data-sidebar>
 
@@ -592,9 +594,54 @@
     </div>
 
   </main>
-
-   <script src="script.js" defer></script>
-
+  
+  <script src="galaxy.js"></script>
+  <script src="script.js" defer></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const avatar = document.querySelector('.avatar-box');
+      const img = avatar.querySelector('img');
+      let bounds;
+      
+      // Calculate boundaries on load and resize
+      function updateBounds() {
+        bounds = avatar.getBoundingClientRect();
+      }
+      
+      updateBounds();
+      window.addEventListener('resize', updateBounds);
+      
+      // Track mouse movement across entire document
+      document.addEventListener('mousemove', function(e) {
+        // Calculate mouse position relative to the center of the avatar
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+        
+        const centerX = bounds.left + bounds.width / 2;
+        const centerY = bounds.top + bounds.height / 2;
+        
+        // Calculate distance from mouse to avatar (as percentage of screen)
+        const distX = (mouseX - centerX) / window.innerWidth;
+        const distY = (mouseY - centerY) / window.innerHeight;
+        
+        // Calculate rotation based on mouse position
+        // Limit rotation to keep it subtle
+        const rotateY = distX * 30; // max ±30 degrees
+        const rotateX = -distY * 30; // Inverted for correct effect
+        
+        // Apply the rotation transform
+        avatar.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
+        
+        // Add depth effect to the image
+        img.style.transform = `translateZ(10px)`;
+      });
+      
+      // Reset position when mouse leaves the document
+      document.addEventListener('mouseleave', function() {
+        avatar.style.transform = 'rotateY(0deg) rotateX(0deg)';
+      });
+    });
+  </script>
 </body>
 
 </html>
