@@ -2157,3 +2157,9 @@ textarea.form-input::-webkit-resizer { display: none; }
     padding: 20px;
   }
 }
+
+.skills-list{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
